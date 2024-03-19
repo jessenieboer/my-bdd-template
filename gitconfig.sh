@@ -6,5 +6,6 @@ git config commit.cleanup strip
 git config commit.status false
 git config commit.template .gitmessage
 git config core.autocrlf false
+git config core.fileMode false
 git config core.safecrlf true
 
