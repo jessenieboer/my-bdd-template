@@ -4,30 +4,30 @@
   - [[#features][Features]]
 - [[#why][Why]]
 - [[#for-whom][For Whom]]
-- [[#by-whom][By Whom]]
 - [[#how][How]]
   - [[#requirements][Requirements]]
   - [[#installation][Installation]]
   - [[#use][Use]]
-  - [[#license][License]]
+    - [[#license][License]]
   - [[#development][Development]]
-    - [[#how-i-made-it][How I made it]]
-    - [[#major-decisions-and-my-reasoning][Major decisions and my reasoning]]
+    - [[#process][Process]]
+    - [[#important-decisions][Important Decisions]]
     - [[#to-do][To do]]
-  - [[#contributing][Contributing]]
+    - [[#contributing][Contributing]]
+- [[#by-whom][By Whom]]
 
 * What
 ** Features
 * Why
 * For Whom
-* By Whom
 * How
 ** Requirements
 ** Installation
 ** Use
-** License
+*** License
 ** Development
-*** How I made it
-*** Major decisions and my reasoning
+*** Process
+*** Important Decisions
 *** To do
-** Contributing
+*** Contributing
+* By Whom
