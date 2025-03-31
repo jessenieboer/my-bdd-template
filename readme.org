@@ -1,4 +1,4 @@
-#+html:<h1 align="center">Repo title</h1>
+#+html:<h1 align="center">My BDD project template</h1>
 * Table of Contents
 - [[#what][What]]
   - [[#features][Features]]
@@ -17,6 +17,7 @@
 - [[#by-whom][By Whom]]
 
 * What
+repo template for bdd projects
 ** Features
 * Why
 * For Whom
@@ -24,6 +25,22 @@
 ** Requirements
 ** Installation
 ** Use
+hard-code your file and directory paths in .project.el
+
+have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
+
+tangle to test files
+
+
+1. capture/collect user stories in the form of "as a <role>, i want <feature> so that <benefit>" to stories.org
+   - just the text with nothing else is a "raw story" and is captured as plain text to raw-stories.org
+   - text with a title and metadata is a "user story" and is captured as an org headline to user-stories.org
+   - could generate user stories from raw stories with ai
+2. generate scenarios from user stories in the form of "given <context>, when <action>, then <expected outcome>"
+   - could be many scenarios generated from a single user story
+   - captured as an org headline with a useful title that summarizes the given/when/then scenario, the given/when/then text, and an empty code block
+
+it's possible there could be multiple implementations in multiple platforms (javascript, python, etc). there could be a separate directory for each implementation?
 *** License
 ** Development
 *** Process

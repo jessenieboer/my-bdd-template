@@ -1,0 +1,24 @@
+* future ${title}
+%(my-get-capitol-properties-string
+'work
+'once
+'no
+'average
+'trivial
+'probably
+'no
+'no
+'no
+'no
+'no
+'no
+'0d
+0
+""
+"")
+
+
+#+begin_src feature :tangle features/%(replace-regexp-in-string " " "_" "${title}").feature
+  Feature: ${title}
+    %?
+#+end_src
