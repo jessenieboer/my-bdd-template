@@ -25,6 +25,10 @@ repo template for bdd projects
 ** Requirements
 ** Installation
 ** Use
+create repo from git@github.com:jessenieboer/my-bdd-template.git
+
+make your own branch
+
 hard-code your file and directory paths in .project.el
 
 have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
