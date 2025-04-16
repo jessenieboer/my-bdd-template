@@ -33,18 +33,56 @@ hard-code your file and directory paths in .project.el
 
 have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
 
-tangle to test files
+tangle to generate test files?
+*** development process
+**** capture requirements
+capture software requirements in either of these forms:
+- idea :: anything worth writing down
+  - unstructured text 
+  - /bdd/ideas.txt
+- story :: a more fleshed-out requirement in a specific format
+  - /bdd/stories.org
+  - title + metadata + story text
+    - story text is in the form of "as a <role>, i want <feature> so that <benefit>" to stories.org
+    - title should succinctly describe the desired feature
+    - metadata has to do with work management:
+      :ID: <id>
+      :CATEGORY: task
+      :EFFORT_TYPE: work
+      :FREQUENCY: once
+      :HAS_DUE_DATE: no
+      :EFFORT_AMOUNT: average
+      :BUDGET_IMPACT: trivial
+      :COMMITMENT: probably
+      :HARD_DATE_DEPENDENCY: no
+      :SOFT_DATE_DEPENDENCY: no
+      :HARD_INTERNAL_DEPENDENCY: no
+      :SOFT_INTERNAL_DEPENDENCY: no
+      :HARD_EXTERNAL_DEPENDENCY: no
+      :SOFT_EXTERNAL_DEPENDENCY: no
+      :EFFORT: 0d
+      :ESTIMATED_COST: 0
+      :ACTUAL_EFFORT: 
+      :ACTUAL_COST: 
+**** generate stories
+give the ai ai-instructions.org and ask it to generate stories for ideas.txt
 
+review and edit the output, and then combine with any stories you wrote yourself.
 
-1. capture/collect user stories in the form of "as a <role>, i want <feature> so that <benefit>" to stories.org
-   - just the text with nothing else is a "raw story" and is captured as plain text to raw-stories.org
-   - text with a title and metadata is a "user story" and is captured as an org headline to user-stories.org
-   - could generate user stories from raw stories with ai
-2. generate scenarios from user stories in the form of "given <context>, when <action>, then <expected outcome>"
-   - could be many scenarios generated from a single user story
-   - captured as an org headline with a useful title that summarizes the given/when/then scenario, the given/when/then text, and an empty code block
+record everything in stories.org
 
-it's possible there could be multiple implementations in multiple platforms (javascript, python, etc). there could be a separate directory for each implementation?
+keep all stories at the same headline level; use tags to categorize and agenda views to sort and filter?
+
+**** generate scenarios
+give the ai ai-instructions.org and ask it to generate scenarios for stories.org
+
+review and edit the output, and then combine with any scenarios you wrote yourself.
+- could be many scenarios generated from a single user story
+
+at this point, tangle to standalone feature files in /bdd/features. note that you might have to create the directory
+
+**** generate tests
+
 *** License
 ** Development
 *** Process

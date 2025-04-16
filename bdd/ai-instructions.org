@@ -5,7 +5,7 @@ For further information on the principles and practices I am exploring an implem
 - the entirety of the https://cucumber.io/ site
 
 * Generating stories
-I will provide you with what I refer to as "captures" - text that contains unstructured descriptions of desired system behavior. From these descriptions, generate user stories in the following format (enclosed in quotes):
+I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories in the following format (enclosed in quotes):
 "* future <story title>
 :PROPERTIES:
 :ID: <id>
@@ -38,8 +38,8 @@ Stories should follow the general pattern "As a <role>, I want <feature>, so tha
 Each story should be centered around a single desired feature.
 
 Generated stories should reproduce the template verbatim except for the enclosing quotation marks and the content marked by angle brackets:
-- <story title> should be replaced with a succinct title that describes the story's feature
-- <id> should be replaced by a new globally unique ID that matches the format of this example: 91820a49-8db9-4908-af33-7188be99d57a
+- <story title> should be replaced with a short title that succinctly represents the story's feature. Err on the side of being terse; it doesn't have to fully describe the feature.
+- <id> should be replaced by a new globally unique ID that you generate. It should matche the format of this example: 91820a49-8db9-4908-af33-7188be99d57a
 - <story_title_with_underscores> should be the same story title as in the headline, but with spaces replaced by underscores
 - <story content> should be the text of the story according to the general pattern "As a <role>, I want <feature>, so that <benefit>", although it could be expanded as necessary. Each phrase should be on a different line.
 
@@ -60,4 +60,6 @@ For further reference, see:
 - https://cucumber.io/docs/bdd/better-gherkin
 
 * Generating tests
-I will provide you with a Gherkin feature file and specify a language. 
+I will provide you with a Gherkin feature file and specify a language. Generate tests
+
+** Python
