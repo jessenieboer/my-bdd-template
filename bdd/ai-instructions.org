@@ -1,8 +1,12 @@
 * Introduction
-This document contains instructions for an ai agent to assist in my workflow, which is oriented around behavior-driven development. Each  headline other than this one contains instructions for how to help with a specific task.
+This document contains instructions for an ai agent to assist in my workflow, which is oriented around behavior-driven development. Each other headline contains instructions for how to help with a specific task.
 
 For further information on the principles and practices I am exploring an implementing, which should guide you in your tasks as well, see:
 - the entirety of the https://cucumber.io/ site
+
+General instructions that apply to all tasks:
+
+Generated stories, scenarios, test code, or any other text should be presented in one org-mode code block (so I can easily copy/paste). Just give me the code blocks without accompanying explanations; I will ask for further clarification if I have questions.
 
 * Generating stories
 I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories in the following format (enclosed in quotes):
@@ -43,14 +47,14 @@ Generated stories should reproduce the template verbatim except for the enclosin
 - <story_title_with_underscores> should be the same story title as in the headline, but with spaces replaced by underscores
 - <story content> should be the text of the story according to the general pattern "As a <role>, I want <feature>, so that <benefit>", although it could be expanded as necessary. Each phrase should be on a different line.
 
-The generated scenarios should be presented in one org-mode code block (so I can easily copy/paste). Just give me the code block without accompanying explanations; I will ask for further clarification if I have questions.
-
 * Generating scenarios
 I will provide you with org headlines and content, which I refer to collectively as "stories". Notice that each headline represents a user story. Each story contains some metadata in a properties drawer (everything between and including ":PROPERTIES:" and ":END:") and a code block in the Gherkin language used by Cucumber. There also might be some text between the properties drawer and the code block.
 
-Generate Scenarios in Gherkin for each story: concrete examples of the story's desired new functionality, used by humans to explore, discover and agree on the details of what's expected to be done for the story. Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Take note of any descriptive text that appears before the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer. As a general suggestion, begin by generating scenarios for base cases, then generate at least 2 scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate scenarios for edge cases, unexpected behavior and inputs, and errors.
+Generate scenarios in Gherkin for each story. A scenario is a concrete example of one element of the story's desired new functionality. Scenarios are used by humans to explore, discover and agree on the details of what's expected to be done for the story. They also, along with associated test code, serve as a way to programatically confirm the system functions as expected.
 
-The generated scenarios should be presented in one org-mode code block (so I can easily copy/paste). Just give me the code blocks without accompanying explanations; I will ask for further clarification if I have questions.
+Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Each scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (Scenario Templates are useful for these situations). Scenarios should be independent of the state or outcome of other scenarios. Also take note of any descriptive text that may appear before the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer.
+
+As a general suggestion for you (but not necessarily a requirement), begin by generating scenarios for base cases, then generate at least 2 scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate scenarios for edge cases, unexpected behavior and inputs, and errors.
 
 Gherkin-specific instructions:
 - Regarding keywords, use "Scenario" rather than "Example", "Scenario Template" rather than "Scenario Outline", and, within Scenario Templates, "Examples" rather than "Scenarios".
@@ -60,6 +64,9 @@ For further reference, see:
 - https://cucumber.io/docs/bdd/better-gherkin
 
 * Generating tests
-I will provide you with a Gherkin feature file and specify a language. Generate tests
+I will provide you with a Gherkin feature file and specify a language. Generate tests for the feature according to the relevant language-specific instructions below as well as the following general instructions:
 
+- Generate one test per scenario.
+  
 ** Python
+Assume I'm using pytest-bdd.

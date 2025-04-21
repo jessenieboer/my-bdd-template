@@ -87,6 +87,10 @@ at this point, tangle to standalone feature files in /bdd/features. note that yo
 ** Development
 *** Process
 *** Important Decisions
+use python-bdd rather than behave because
+- emacs integration
+- fixtures
+- pytest can be used outside bdd projects
 *** To do
 *** Contributing
 * By Whom
