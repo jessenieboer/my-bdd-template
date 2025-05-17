@@ -69,9 +69,11 @@ give the ai ai-instructions.org and ask it to generate stories for ideas.txt
 
 review and edit the output, and then combine with any stories you wrote yourself.
 
-record everything in stories.org
+record everything in stories.org; replace all instances of >id< with a new org id
 
 keep all stories at the same headline level; use tags to categorize and agenda views to sort and filter?
+
+use quotes to denote strings in gherkin step arguments (for sake of clarity)
 
 **** generate scenarios
 give the ai ai-instructions.org and ask it to generate scenarios for stories.org
@@ -81,7 +83,10 @@ review and edit the output, and then combine with any scenarios you wrote yourse
 
 at this point, tangle to standalone feature files in /bdd/features. note that you might have to create the directory
 
+running your test framework at this point should give you "Step definition is not found" errors
+
 **** generate tests
+give the ai all your feature files and ask it to generate tests.  
 
 *** License
 ** Development

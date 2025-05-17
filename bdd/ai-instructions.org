@@ -6,13 +6,13 @@ For further information on the principles and practices I am exploring an implem
 
 General instructions that apply to all tasks:
 
-Generated stories, scenarios, test code, or any other text should be presented in one org-mode code block (so I can easily copy/paste). Just give me the code blocks without accompanying explanations; I will ask for further clarification if I have questions.
+Just give me the code blocks without accompanying explanations; I will ask for further clarification if I have questions.
 
 * Generating stories
-I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories in the following format (enclosed in quotes):
+I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories in the following org-mode format (enclosed in quotes):
 "* future <story title>
 :PROPERTIES:
-:ID: <id>
+:ID: >id<
 :CATEGORY: task
 :EFFORT_TYPE: work
 :FREQUENCY: once
@@ -31,8 +31,10 @@ I will provide you with what I refer to as "ideas" - unstructured text that cont
 :ACTUAL_EFFORT: 
 :ACTUAL_COST: 
 :END:
+notes:
 
-#+begin_src feature :tangle features/<story_title_with_underscores>.feature
+#+name <story_title_with_underscores>
+#+begin_src feature :tangle features/<story_title_with_underscores>.feature :comments link
   Feature: <story title>
     <story content>
 #+end_src"
@@ -43,30 +45,61 @@ Each story should be centered around a single desired feature.
 
 Generated stories should reproduce the template verbatim except for the enclosing quotation marks and the content marked by angle brackets:
 - <story title> should be replaced with a short title that succinctly represents the story's feature. Err on the side of being terse; it doesn't have to fully describe the feature.
-- <id> should be replaced by a new globally unique ID that you generate. It should matche the format of this example: 91820a49-8db9-4908-af33-7188be99d57a
-- <story_title_with_underscores> should be the same story title as in the headline, but with spaces replaced by underscores
+- <story_title_with_underscores> should be the same story title as in the headline, but with spaces replaced by underscores.
 - <story content> should be the text of the story according to the general pattern "As a <role>, I want <feature>, so that <benefit>", although it could be expanded as necessary. Each phrase should be on a different line.
+- note that i will replace the text >id< so don't worry about it
+- The final output should be an org-mode file with code blocks containing Gherkin.
 
 * Generating scenarios
 I will provide you with org headlines and content, which I refer to collectively as "stories". Notice that each headline represents a user story. Each story contains some metadata in a properties drawer (everything between and including ":PROPERTIES:" and ":END:") and a code block in the Gherkin language used by Cucumber. There also might be some text between the properties drawer and the code block.
 
 Generate scenarios in Gherkin for each story. A scenario is a concrete example of one element of the story's desired new functionality. Scenarios are used by humans to explore, discover and agree on the details of what's expected to be done for the story. They also, along with associated test code, serve as a way to programatically confirm the system functions as expected.
 
-Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Each scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (Scenario Templates are useful for these situations). Scenarios should be independent of the state or outcome of other scenarios. Also take note of any descriptive text that may appear before the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer.
+Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Each scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (Scenario Templates are useful for these situations). Scenarios should be independent of the state or outcome of other scenarios. Also take note of any descriptive text that may appear between "notes:" and the beginning of the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer.
 
 As a general suggestion for you (but not necessarily a requirement), begin by generating scenarios for base cases, then generate at least 2 scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate scenarios for edge cases, unexpected behavior and inputs, and errors.
 
-Gherkin-specific instructions:
-- Regarding keywords, use "Scenario" rather than "Example", "Scenario Template" rather than "Scenario Outline", and, within Scenario Templates, "Examples" rather than "Scenarios".
+Generate valid Gherkin, reprinting the story's Feature exactly and then listing all scenarios below. Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios". Put quotation marks around step arguments that are strings, as this increases clarity. Add the @skip tag to each scenario, so that I can test and implement them one-by-one by removing the tag from the scenario I'm working on.
 
 For further reference, see:
 - https://cucumber.io/docs/gherkin/reference
 - https://cucumber.io/docs/bdd/better-gherkin
+- https://github.com/andredesousa/gherkin-best-practices
 
-* Generating tests
-I will provide you with a Gherkin feature file and specify a language. Generate tests for the feature according to the relevant language-specific instructions below as well as the following general instructions:
+* Generating step definitions
+I will provide you with Gherkin feature files, specify a language and maybe suggest an organizational scheme. Generate step definitions for all features according to the relevant language-specific instructions (listed below) as well as the following general instructions:
 
-- Generate one test per scenario.
+- Create a heirarchy of org headlines to organize step definitions. Organize step definitions according to domain concept rather than feature or scenario, and if I have suggested an organizational scheme, take that into account. If it is a small, simple set of feature files, it's possible that there will be no heirarchy at all.
+- The actual step definitions will reside in org-mode code blocks under an appropriate org headline in the hierarchy. All step definitions at the same place in the hierarchy should be contained within the same code block. If there is no heirarchy, simply have one top-level headline named "Steps"
+- Generate step definition "files" in the following format (enclosed in quotes):
+"<*> <file_title>_steps
+#+begin_src <language> :tangle steps/<heirarchy><file_title>_steps.<file_extension> :comments link
+<step definiton 1>
+<step definiton 2>
+<step definiton n>
+#+end_src"
+
+Generated step definition "files" should reproduce the template verbatim except for the enclosing quotation marks and the content marked by angle brackets:
+- <*> should be replaced by however many asterisks is correct for the headline level where these step definitions reside in the organizational scheme.
+- <file_title> should be replaced by a succinct name that summarizes the domain concept the generated steps are associated with.
+- <language> should be replaced by the keyword that org-mode expects for code blocks in the language that has been specified for step definition generation.
+- <heirarchy> should be replaced by a path of directories that mirrors the organizational scheme heirarchy where these step definitions reside.
+- <file_extension> should be replaced by whatever file extension is required by the language that has been specified for step definition generation.
+- <step definition x> should be replaced with each generated step definition.
+- Important! The final output should be a .org file containing the headline hierarchy and code blocks in the language that has been specified for step definition generation.
   
 ** Python
-Assume I'm using pytest-bdd.
+- Generate step definitions for pytest-bdd.
+- Prefer to use target_fixture in given/when/then decorators when possible, rather than explicitly defining a fixture to store context.
+- Use parsers.parse for parsing step arguments
+- Do not use the same name for a step argument and a fixture, as this can be confusing.
+- For Then steps, make sure that the names of the step arguments that represent expected results are prefixed with "expected_" and that the names of step arguments that represent actual results are prefixed with "actual_". In method signatures, prefer to order step arguments for expected results first, and step arguments for actual results next.
+- When a step parameter in the feature file is delimited by quotation marks, make sure the corresponding step definition accounts for those quotation marks. For example, the Gherkin step 'Given the day is "<day>"' should result in the code 'parsers.parse("the day is \"{day}\"")' within the corresponding @given decorator.
+- Avoid using the @scenario decorator if possible; all logic should be inside Given/When/Then steps, because this is recommended in the pytest-bdd documentation.
+- Use the scenarios decorator after the import statement to bind the step file to the associated feature file, for example: scenarios("my_feature_name.feature"). Assume that python knows where the features directory is, so just use the name of the file itself without a directory path.
+- For step names that are not identical but mean the same thing and need identical step definition logic, create one step definiton and decorate it with multiple step aliases.
+- File and directory titles should use underscores as spaces (rather than dashes).
+- File extensions should be ".py".
+- Generate test logic, but comment it out and end each step definition with "pass". This is so that I can uncomment and implement the step definitions one-by-one.
+  
+For further reference, see all content on the pytest-bdd site: https://pypi.org/project/pytest-bdd/
