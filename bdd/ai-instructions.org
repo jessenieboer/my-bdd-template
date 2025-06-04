@@ -1,15 +1,18 @@
 * Introduction
-This document contains instructions for an ai agent to assist in my workflow, which is oriented around behavior-driven development. Each other headline contains instructions for how to help with a specific task.
+This document contains instructions for an ai agent to assist in my workflow, which is oriented around behavior-driven development. We will be generating stories and associated scenarios in the Gherkin language used by Cucumber, as well as generating step definitions in specified languages. Each other headline in this document contains instructions for how to help with a specific task.
 
-For further information on the principles and practices I am exploring an implementing, which should guide you in your tasks as well, see:
+For further information on the principles and practices I am using, and which should guide you in your tasks as well, see:
 - the entirety of the https://cucumber.io/ site
+- https://cucumber.io/docs/gherkin/reference
+- https://cucumber.io/docs/bdd/better-gherkin
+- https://github.com/andredesousa/gherkin-best-practices
+- http://www.thinkcode.se/blog/2016/06/22/cucumber-antipatterns
 
 General instructions that apply to all tasks:
-
 Just give me the code blocks without accompanying explanations; I will ask for further clarification if I have questions.
 
 * Generating stories
-I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories in the following org-mode format (enclosed in quotes):
+I will provide you with what I refer to as "ideas" - unstructured text that contains natural language brainstorming about desired system behavior. From these informal ideas, generate user stories using the following org-mode format (enclosed in quotes):
 "* future <story title>
 :PROPERTIES:
 :ID: >id<
@@ -51,20 +54,46 @@ Generated stories should reproduce the template verbatim except for the enclosin
 - The final output should be an org-mode file with code blocks containing Gherkin.
 
 * Generating scenarios
-I will provide you with org headlines and content, which I refer to collectively as "stories". Notice that each headline represents a user story. Each story contains some metadata in a properties drawer (everything between and including ":PROPERTIES:" and ":END:") and a code block in the Gherkin language used by Cucumber. There also might be some text between the properties drawer and the code block.
+I will provide stories in 1 of 4 formats: a single story described by a single Gherkin Feature statement, a Gherkin feature file, a single org-mode headline containing a Gherkin code block that contains single Gherkin Feature statement, or an org file. Generate scenarios for the stories I provide according to the general instructions below as well as the specific instructions corresponding to format the story was provided in.
 
-Generate scenarios in Gherkin for each story. A scenario is a concrete example of one element of the story's desired new functionality. Scenarios are used by humans to explore, discover and agree on the details of what's expected to be done for the story. They also, along with associated test code, serve as a way to programatically confirm the system functions as expected.
+** General instructions for generating scenarios
+A scenario is a concrete example of one element of the story's desired new functionality. Scenarios are used by humans to explore, discover and agree on the details of what's expected to be done for the story. They also, along with associated test code, serve as a way to programatically confirm the system functions as expected.
 
-Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Each scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (Scenario Templates are useful for these situations). Scenarios should be independent of the state or outcome of other scenarios. Also take note of any descriptive text that may appear between "notes:" and the beginning of the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer.
+Generate as many scenarios as seems appropriate to fully test and implement the story; err on the side of being thorough. Each scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (Scenario Templates are useful for these situations).
 
-As a general suggestion for you (but not necessarily a requirement), begin by generating scenarios for base cases, then generate at least 2 scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate scenarios for edge cases, unexpected behavior and inputs, and errors.
+Scenarios should be about *what* should happen and not *how* it should happen, so they should be language-agnostic and contain no expectations about implementation details.
 
-Generate valid Gherkin, reprinting the story's Feature exactly and then listing all scenarios below. Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios". Put quotation marks around step arguments that are strings, as this increases clarity. Add the @skip tag to each scenario, so that I can test and implement them one-by-one by removing the tag from the scenario I'm working on.
+Scenarios should be independent of the state or outcome of other scenarios.
 
-For further reference, see:
-- https://cucumber.io/docs/gherkin/reference
-- https://cucumber.io/docs/bdd/better-gherkin
-- https://github.com/andredesousa/gherkin-best-practices
+As a general suggestion for you (but not a requirement), begin by generating scenarios for base cases, then generate at least 2 scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate scenarios for edge cases, unexpected behavior and inputs, and errors.
+
+Generate all scenarios in valid Gherkin. Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios". Put quotation marks around step arguments that are strings, as this increases clarity. Add the @skip tag to each scenario, so that I can test and implement them one-by-one by removing the tag from the scenario I'm working on.
+
+** Generating scenarios for a single Feature statement
+Simply list all generated scenarios. The output should be valid Gherkin.
+
+** Generating scenarios for a Gherkin feature file
+Recreate the feature file exactly, except, for each Feature statement that has no associated scenarios, insert all generated scenarios below the corresponding Feature statement. Do not generate scenarios for Feature statements that already have corresponding scenarios.
+
+The output should be a Gherkin file.
+
+** Generating scenarios for a single org-mode subtree
+Each subtree contains a headline, some metadata in a properties drawer (everything between and including ":PROPERTIES:" and ":END:"), and a code block in the Gherkin, which contains the story's Feature statement. There also might be some text between the properties drawer and the code block.
+
+Simply list all generated scenarios. 
+
+Take note of any descriptive text that may appear between "notes:" and the beginning of the code block, as it might have ideas or further instructions for scenario generation for that story. Ignore the properties drawer.
+
+The output should be valid Gherkin.
+
+** Generating scenarios for an org file
+The file contains top-level subtrees, each of which contains a headline, some metadata in a properties drawer (everything between and including ":PROPERTIES:" and ":END:"), and a code block in the Gherkin, which contains the story's Feature statement. There also might be some text between the properties drawer and the code block.
+
+Each headline may begin with a todo keyword: "future", "next", "now", or "past". Recreate the org file exactly, except, for each top-level subtree that has a headline beginning with the "now" keyword and that does not already contain associated scenarios, insert all generated scenarios below the Feature statement within the code block. Do not generate scenarios for a headline if it begins with a todo keyword other than "now", if it does not begin with a keyword, or if it begins the the "now" keyword but already has scenarios within it.
+
+Take note of any descriptive text that may appear between "notes:" and the beginning of the code block, as it might have ideas or further instructions for scenario generation for that story. You can ignore the properties drawer.
+
+The output should be an org file.
 
 * Generating step definitions
 I will provide you with Gherkin feature files, specify a language and maybe suggest an organizational scheme. Generate step definitions for all features according to the relevant language-specific instructions (listed below) as well as the following general instructions:
