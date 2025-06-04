@@ -16,7 +16,7 @@ I will provide you with what I refer to as "ideas" - unstructured text that cont
 :CATEGORY: task
 :EFFORT_TYPE: work
 :FREQUENCY: once
-:HAS_DUE_DATE: no
+:HAS_DUE_DATE: 
 :EFFORT_AMOUNT: average
 :BUDGET_IMPACT: trivial
 :COMMITMENT: probably

@@ -19,17 +19,38 @@
 * What
 repo template for bdd projects
 ** Features
+
+Capture unstructured text to ideas.txt.
+
+Capture user stories in stories.org
+
+
+
+
+
 * Why
 * For Whom
 * How
 ** Requirements
 ** Installation
+for an independent project, create repo from git@github.com:jessenieboer/python-bdd-project-template.git
+
+to add as a subdirectory to an existing project, use git subtree:
+#+BEGIN_SRC
+git subtree add --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
+#+END_SRC
+
+for integrating template changes:
+#+BEGIN_SRC
+git subtree pull --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
+#+END_SRC
+
+hard-code the path to stories.org in the :roam-files property in project.el
+
+hard-code the paths to ideas.txt in the :target
+
+
 ** Use
-create repo from git@github.com:jessenieboer/my-bdd-template.git
-
-make your own branch
-
-hard-code your file and directory paths in .project.el
 
 have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
 
@@ -67,9 +88,19 @@ capture software requirements in either of these forms:
 **** generate stories
 give the ai ai-instructions.org and ask it to generate stories for ideas.txt
 
-review and edit the output, and then combine with any stories you wrote yourself.
+review and edit the output, and then combine with any stories you wrote yoursevlf.
 
 record everything in stories.org; replace all instances of >id< with a new org id
+
+#+BEGIN_SRC emacs-lisp
+(defun my-replace-ids-with-uuids ()
+  "Replace each instance of '>id<' with a unique new Org ID in the current buffer."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward ">id<" nil t)
+      (replace-match (org-id-new) t t))))
+#+END_SRC
 
 keep all stories at the same headline level; use tags to categorize and agenda views to sort and filter?
 
@@ -92,10 +123,6 @@ give the ai all your feature files and ask it to generate tests.
 ** Development
 *** Process
 *** Important Decisions
-use python-bdd rather than behave because
-- emacs integration
-- fixtures
-- pytest can be used outside bdd projects
 *** To do
 *** Contributing
 * By Whom

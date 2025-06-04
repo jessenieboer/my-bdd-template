@@ -8,8 +8,7 @@
 				 ("e" "Story" entry
 				  (file "/path/to/this/dir/bdd/story-template.org")
 				  :target (file "/path/to/this/dir/bdd/stories.org")))
-		:agenda-commands (("ln" "Stakeholders: Must this item be finished by a certain date, or else it will fail? (Basics)"
-		   tags
+		:agenda-commands (("ln" "Stakeholders: Must this item be finished by a certain date, or else it will fail? (Basics)" tags "TODO<>\"past\"&HAS_DUE_DATE=\"\"
 		   ((org-agenda-hide-tags-regexp nil)
 		    (org-agenda-overriding-header "Must this item be finished by a certain date, or else it will fail?")
 		    (org-agenda-sorting-strategy '((tags category-up alpha-up)))
