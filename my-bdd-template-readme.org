@@ -19,12 +19,13 @@
 * What
 repo template for bdd projects
 ** Features
+Capture unstructured text to bdd/ideas.txt
 
-Capture unstructured text to ideas.txt.
+Capture user stories in bdd/user-stories.org
 
-Capture user stories in stories.org
+Use user stories to write Features in Gherkin
 
-
+Put step definitions in bdd/steps
 
 
 
@@ -45,12 +46,30 @@ for integrating template changes:
 git subtree pull --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
 #+END_SRC
 
-hard-code the path to stories.org in the :roam-files property in project.el
-
-hard-code the paths to ideas.txt in the :target
-
+add your project name and hard-code paths to user-stories.org, ideas.org, and story-template.org in project.el:
+#+BEGIN_SRC emacs-lisp
+  `(:project-tags ("<project_name>")
+  		:roam-files ("<path to project dir>/bdd/user-stories.org")
+  		:roam-templates (("s" "Idea" plain
+  				  "${title}"
+  				  :target (file "<path to project dir>/bdd/ideas.txt")
+  				  :empty-lines 1
+  				  :immediate-finish)
+  				 ("e" "User Story" entry
+  				  (file "<path to project dir>/bdd/user-story-template.org")
+  				  :target (file "<path to project dir>/bdd/user-stories.org")))
+  		...)
+#+END_SRC
 
 ** Use
+
+1. brainstorm ideas in bdd/ideas.txt
+2. ask the ai to generate user stories from the ideas
+3. copy the generated stories to bdd/user-stories.org; replace ">id<" with unique ids
+4. process user story with work management system; stories with "now" headlines will be processed by the ai
+5. upload user-stories.org to the ai and ask it to generate features
+6. download feature files into bdd/features
+7. ask ai to generate step definitions for feature files; put in bdd/steps
 
 have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
 

@@ -1,0 +1,3 @@
+This workspace is focused on behavior-driven development. Be prepared to generate stories, scenarios, and step definitions according to the instructions in the attached ai-instructions.org. When generating stories, scenarios, or step definitions, do not provide any additional explanation. If I have further questions, I will ask. 
+
+I may also ask various software development questions. In general, you can provide terse, minimal responses without a lot of extra explanation. If I have further questions, I will ask. 

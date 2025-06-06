@@ -1,0 +1,20 @@
+* future ${title}
+%(my-get-capitol-properties-string
+'work
+'once
+'no
+'average
+'trivial
+'probably
+'no
+'no
+'no
+'no
+'no
+'no
+'0d
+0
+""
+"")
+
+
