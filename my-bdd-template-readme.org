@@ -61,6 +61,8 @@ add your project name and hard-code paths to user-stories.org, ideas.org, and st
   		...)
 #+END_SRC
 
+note that for capture stuff to work correctly for a project, you have to create a symlink in <emacs dir>/org-roam/ to the project: in dired, put the cursor on the project's directory, dired-do-symlink, and enter <emacs dir>/org-roam/ when prompted for where to symlink from. this solves issues where you can capture correctly but the nodes don't seem to get indexed and nothing shows up for org-roam-node-find
+
 ** Use
 
 1. brainstorm ideas in bdd/ideas.txt

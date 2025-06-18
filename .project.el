@@ -8,7 +8,7 @@
                                  ("e" "User Story" entry
   				(file "<path to project dir>/bdd/user-story-template.org")
   				:target (file "<path to project dir>/bdd/user-stories.org")))
-		:agenda-commands (("ln" "Stakeholders: Must this item be finished by a certain date, or else it will fail? (Basics)" tags "TODO<>\"past\"&HAS_DUE_DATE=\"\"
+		:agenda-commands (("ln" "Stakeholders: Must this item be finished by a certain date, or else it will fail? (Basics)" tags "TODO<>\"past\"&HAS_DUE_DATE=\"\""
 		   ((org-agenda-hide-tags-regexp nil)
 		    (org-agenda-overriding-header "Must this item be finished by a certain date, or else it will fail?")
 		    (org-agenda-sorting-strategy '((tags category-up alpha-up)))
@@ -63,13 +63,29 @@
 		    (org-super-agenda-groups '((:auto-tags t)))))
   ;;; Dependencies
 
-    		  (" " "Manager: What are all the dependencies for this item? (Dependencies)" tags "COMMITMENT=\"yes\""
-		   ((org-agenda-cmp-user-defined 'my-org-cmp-commitment)
-		    (org-agenda-overriding-header "What are all the dependencies for this item?")
-		    (org-agenda-view-columns-initially t)
-		    (org-overriding-columns-format "%5CATEGORY(Cat) %30ITEM(Item) %5COMMITMENT(Commitment) %HARD_DATE_DEPENDENCY(Hard Date) %SOFT_DATE_DEPENDENCY(Soft Date) %HARD_INTERNAL_DEPENDENCY(Hard Int) %SOFT_INTERNAL_DEPENDENCY(Soft Int) %HARD_EXTERNAL_DEPENDENCY(Hard Ext) %SOFT_EXTERNAL_DEPENDENCY(Soft Ext)")
-		    (org-agenda-sorting-strategy '((tags user-defined-up category-down alpha-up)))
-		    (org-super-agenda-groups '((:auto-tags t)))))
+    		  (" l" "Manager: What are all the dependencies for this item? (Dependencies)" tags "COMMITMENT=\"yes\""
+				   ((org-agenda-cmp-user-defined 'my-org-cmp-commitment)
+				    (org-agenda-overriding-header "What are all the dependencies for this item?")
+				    (org-agenda-view-columns-initially t)
+				    (org-overriding-columns-format "%5CATEGORY(Cat) %30ITEM(Item) %5COMMITMENT(Commitment) %HARD_DATE_DEPENDENCY(Hard Date) %SOFT_DATE_DEPENDENCY(Soft Date) %HARD_INTERNAL_DEPENDENCY(Hard Int) %SOFT_INTERNAL_DEPENDENCY(Soft Int) %HARD_EXTERNAL_DEPENDENCY(Hard Ext) %SOFT_EXTERNAL_DEPENDENCY(Soft Ext)")
+				    (org-agenda-sorting-strategy '((tags user-defined-up category-down alpha-up)))
+				    (org-super-agenda-groups '((:auto-tags t)))))
+
+				  (" a" "Manager: What hard dependencies am I waiting on? (Dependencies)" tags "HARD_DATE_DEPENDENCY=\"yes\"|HARD_INTERNAL_DEPENDENCY=\"yes\"|HARD_EXTERNAL_DEPENDENCY=\"yes\""
+				   ((org-agenda-cmp-user-defined 'my-org-cmp-commitment)
+				    (org-agenda-overriding-header "What hard dependencies am I waiting on?")
+				    (org-agenda-view-columns-initially t)
+				    (org-overriding-columns-format "%5CATEGORY(Cat) %30ITEM(Item) %5COMMITMENT(Commitment) %HARD_DATE_DEPENDENCY(Hard Date) %HARD_INTERNAL_DEPENDENCY(Hard Int) %HARD_EXTERNAL_DEPENDENCY(Hard Ext)")
+				    (org-agenda-sorting-strategy '((tags user-defined-up category-down alpha-up)))
+				    (org-super-agenda-groups '((:auto-tags t)))))
+
+				  ("  " "Manager: What soft dependencies am I waiting on? (Dependencies)" tags "SOFT_DATE_DEPENDENCY=\"yes\"|SOFT_INTERNAL_DEPENDENCY=\"yes\"|SOFT_EXTERNAL_DEPENDENCY=\"yes\""
+				   ((org-agenda-cmp-user-defined 'my-org-cmp-commitment)
+				    (org-agenda-overriding-header "What soft dependencies am I waiting on?")
+				    (org-agenda-view-columns-initially t)
+				    (org-overriding-columns-format "%5CATEGORY(Cat) %30ITEM(Item) %5COMMITMENT(Commitment) %SOFT_DATE_DEPENDENCY(Soft Date) %SOFT_INTERNAL_DEPENDENCY(Soft Int) %SOFT_EXTERNAL_DEPENDENCY(Soft Ext)")
+				    (org-agenda-sorting-strategy '((tags user-defined-up category-down alpha-up)))
+				    (org-super-agenda-groups '((:auto-tags t)))))
 
 		    ;;; Assigning resources
 
