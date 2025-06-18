@@ -46,7 +46,7 @@ for integrating template changes:
 git subtree pull --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
 #+END_SRC
 
-add your project name and hard-code paths to user-stories.org, ideas.org, and story-template.org in project.el:
+add your project name and hard-code paths to user-stories.org, ideas.org, and story-template.org in project.el.
 #+BEGIN_SRC emacs-lisp
   `(:project-tags ("<project_name>")
   		:roam-files ("<path to project dir>/bdd/user-stories.org")
@@ -59,6 +59,11 @@ add your project name and hard-code paths to user-stories.org, ideas.org, and st
   				  (file "<path to project dir>/bdd/user-story-template.org")
   				  :target (file "<path to project dir>/bdd/user-stories.org")))
   		...)
+#+END_SRC
+
+in ideas.txt and user-stories.org, replace >id< using
+#+BEGIN_SRC emacs-lisp
+(insert (org-id-new))
 #+END_SRC
 
 note that for capture stuff to work correctly for a project, you have to create a symlink in <emacs dir>/org-roam/ to the project: in dired, put the cursor on the project's directory, dired-do-symlink, and enter <emacs dir>/org-roam/ when prompted for where to symlink from. this solves issues where you can capture correctly but the nodes don't seem to get indexed and nothing shows up for org-roam-node-find
@@ -140,6 +145,8 @@ running your test framework at this point should give you "Step definition is no
 **** generate tests
 give the ai all your feature files and ask it to generate tests.  
 
+*** troubleshooting
+i had an issue where capturing an idea to ideas.txt was giving me "org-fold-region: Calling ‘org-fold-core-region’ with missing SPEC", and changing the roam template's target file from /home/jessenieboer/kingdom/projects to ~/kingdom/projects supposedely fixed it. but i also had an issue with user stories being captured as a second level headline in user-stories.org, rather that a first level. i deleted the existing "check friday" story and then it stopped forcing second-level headlines. after experimentation, it seems the issue is that you need file level properties drawers with ids in it for org-roam, so i added that with the placeholder >id< to ideas.txt and user-stories.org, which you must replace with an actual org id using (insert (org-id-new))
 *** License
 ** Development
 *** Process
