@@ -1,0 +1,199 @@
+* Introduction
+This org document contains instructions for assisting in Behavior-Driven Development. Tasks you may be asked to perform:
+- generating User Stories from text that contains natural-language brainstorming about desired system behavior
+- generating new BDD Features to fulfill User Stories
+- adjusting existing BDD Features
+- generating Scenarios for Features to make User Stories testable
+- adjusting existing Scenarios
+- generating Step Definitions to implement tests described in Scenarios 
+- adjusting existing Step Definitions
+
+All Features and Scenarios will be written in the Gherkin language. Step Definitions may be written in a variety of languages; language-specific instructions will be provided. In general, when generating Features, Scenarios, Step Definitions, file names, descriptive text, and categorizations, be terse, not wordy.
+
+For further information on BDD principles and practices which should guide you in your tasks, see:
+- the entirety of the https://cucumber.io/ site
+- https://cucumber.io/docs/gherkin/reference
+- https://cucumber.io/docs/bdd/better-gherkin
+- https://github.com/andredesousa/gherkin-best-practices
+- http://www.thinkcode.se/blog/2016/06/22/cucumber-antipatterns
+- https://jennyjmar.com/2015/04/15/asteroids-and-design-thinking/
+- https://jennyjmar.com/2016/04/16/bdd-discovery-and-oopsi/
+
+* Generating User Stories
+You *will* be provided with the following content:
+- unstructured text that contains natural-language brainstorming about desired system behavior
+- a format User Stories should be generated in
+
+You *might* be provided with the following content:
+- an organizational scheme with which to categorize User Stories
+- specific users of the system
+
+Your task: Generate User Stories from ideas.txt, taking into account any suggested organizational scheme and specified users. Generate as many User Stories as seems necessary to represent all the content in ideas.txt. Follow the general instructions described below, as well as the instructions for the specified User Story format.
+
+** Generating User Stories
+Each User Story should be centered around a single behavior as experienced from a user's perspective and should follow the general pattern "As a <role>, I want <system capability>, so that <benefit>."
+
+User Stories should have the following characteristics:
+
+- Independent: The User Story should have minimal dependencies on other User Stories, so that it can be developed, tested, and delivered independently.
+- Negotiable: The User Story should be a starting point for discussion and collaboration rather than a rigid contract, so that developers and stakeholders can keep refining the details of the system as they discover what behavior they need from it.
+- Valuable: The User Story should deliver clear value to the user or stakeholder, so that nobody is wasting time or effort.
+- Estimable: The User Story should be clear enough to estimate the effort required to implement it, so that those who implement it can manage their workload.
+- Small: The User Story should be concise and focused, so that it can be quickly developed and delivered.
+- Testable: The User Story should have clear acceptance criteria that can be translated into testable Scenarios, so that the desired system behavior can be verified.
+
+** Categorizing User Stories
+User Stories should be categorized in some way that makes them easy for people to organize. If an organizational scheme has been suggested, use that to categorize User Stories. If no organizational scheme has been suggested, try to categorize User Stories by both user and system component. For example, a User Story about how a customer logs in to a screen could be categorized by both "customer" and "login screen".
+
+Systems that are small and simple don't need any categorization, because people can understand them without having to organize them.
+
+Each format described below will contain instructions on how to record categorizations.
+
+** User Story formats
+*** User Stories in org-mode format
+For each User Story, use the following template (enclosed in quotes):
+"* <story title> <story tags>
+
+
+<story content>
+
+
+<story notes>
+
+
+"
+
+Reproduce the template verbatim except for the enclosing quotation marks and the content marked by angle brackets:
+- <story title> should be replaced with a terse title for the desired system capability that the User Story is centered around.
+- <story tags> should be replaced with a set of org-mode tags that categorize the User Story. For example, the tags ":customer:login_screen:". Make sure story tags are separated by colons, that there is a colon at the beginning and the end of the list of tags, and that individual tags are underscore-separated if they contain multiple words. For example: ":tag_1:tag_2:etc:".
+- <story content> should be the text of the story according to the pattern "As a <role>, I want <system capability>, so that <benefit>.", although it could be expanded as necessary. Each phrase should be on a different line.
+- <story notes> should be replaced with any relevant notes or ideas that are associated with the User Story and are not already captured in <story content>.
+  
+*** User Stories in jessenieboer's format
+For each User Story, use the following template (enclosed in quotes):
+"* future <story title> <story tags>
+:PROPERTIES:
+:ID: >id<
+:CATEGORY: task
+:EFFORT_TYPE: work
+:FREQUENCY: once
+:HAS_DUE_DATE: 
+:EFFORT_AMOUNT: average
+:BUDGET_IMPACT: trivial
+:COMMITMENT: probably
+:HARD_DATE_DEPENDENCY: no
+:SOFT_DATE_DEPENDENCY: no
+:HARD_INTERNAL_DEPENDENCY: no
+:SOFT_INTERNAL_DEPENDENCY: no
+:HARD_EXTERNAL_DEPENDENCY: no
+:SOFT_EXTERNAL_DEPENDENCY: no
+:EFFORT: 0d
+:ESTIMATED_COST: 0
+:ACTUAL_EFFORT: 
+:ACTUAL_COST: 
+:END:
+
+
+<story content>
+
+
+<story notes>
+
+
+"
+
+Reproduce the template verbatim except for the enclosing quotation marks and the content marked by angle brackets:
+- <story title> should be replaced with a terse title for the desired system capability that the User Story is centered around.
+- <story tags> should be replaced with a set of org-mode tags that categorize the User Story. For example, the tags ":customer:login_screen:". Make sure story tags are separated by colons, that there is a colon at the beginning and the end of the list of tags, and that individual tags are underscore-separated if they contain multiple words. For example: ":tag_1:tag_2:etc:".
+- <story content> should be the text of the story according to the pattern "As a <role>, I want <system capability>, so that <benefit>.", although it could be expanded as necessary. Each phrase should be on a different line.
+- <story notes> should be replaced with any relevant notes or ideas that are associated with the User Story and are not already captured in <story content>.
+  
+Ignore the text ">id<"; it will be replaced. The output must be an org file, and each User Story must be a top-level headline.
+
+* Generating and adjusting feature files
+You *will* be provided with the following content:
+- org files that contain User Stories in one of the formats described in the "User Story formats" section
+
+You *might* be provided with the following content:
+- Gherkin feature files
+
+Your task: Generate a set of Gherkin feature files that fully satisfy all the provided User Stories. This means that the feature files should describe and make testable all the desired system capabilities contained within the provided User Stories.
+
+** Feature files
+Gherkin feature files contain 1 Feature and its associated Scenarios. A Feature should look like this:
+#+BEGIN_SRC feature
+  Feature: <title>
+    <narrative section>
+
+
+    Background:
+      <shared context>
+      
+      <scenarios>
+#+END_SRC
+
+where <title> is the name of Feature, <narrative section> is a succinct, natural language description of the Feature (including any questions or uncertainties), <shared context> is for any setup shared by all associated Scenarios and <scenarios> are the associated Scenarios.
+
+All feature files should be named identically to the Feature's title, except the file name should be separated by underscores, and it should have the .feature extension.
+
+** Features
+A Feature should describe a single system capability derived from the User Stories. User Stories might not map one-to-one to Features. One User Story might indicate multiple Features that need to be represented in the feature files, or multiple User Stories might all be related to a single Feature.
+
+Features should be small and specific enough that they don't require multiple dozens of Scenarios to describe, but general enough that they need more than a few Scenarios to describe.
+
+** Scenarios
+A Scenario should be a concrete, testable example of one aspect of the system capability described by its Feature. Scenarios should be about *what* should happen and not *how* it should happen, so they should be language-agnostic and contain no expectations about implementation details.
+
+Scenarios should be independent of the state or outcome of other Scenarios.
+
+For each Feature, generate as many Scenarios as is required to fully test and implement it; err on the side of being thorough. Each Scenario should be focused on a single element of functionality, but it's fine if that "single element of functionality" requires multiple test instances, each with different data (in these situations, use Scenario Templates).
+
+Add the @skip tag to each Scenario, so that they can be tested and implemented one-by-one by removing the tag from the Scenario.
+
+*** Process
+Begin by generating Scenarios for base cases, then generate Scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate Scenarios for edge cases, unexpected behavior and inputs, and errors. For each base case Scenario, add a @base tag. For each normal, expected Scenario add a @normal tag. For each edge case, unexpected behavior, or error Scenario add an @abnormal tag. In the Feature file, put Scenarios in that order: base, normal, abnormal.
+
+*** Miscellaneous
+Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios".
+
+Put quotation marks around step arguments that are strings, as this increases clarity. When using an empty string as a step argument, make sure the string is explicitly represented by ""
+
+When using Data Tables in Scenarios, make sure each column has a name.
+
+If each Scenario would use the same Given steps, extract those steps into a Background.
+
+** Organizing Features among files
+If a User Story's desired behavior could be part of an existing Feature in a provided feature file, iterate on that Feature, perhaps by adding new Scenarios or editing existing ones. Feel free to edit any Scenarios with the @skip tag, as those have not yet been implemented. If a Scenario does not have a @skip tag, do not edit it. You are also free to edit an existing Feature's narrative section.
+
+* Generating and adjusting step files
+You *will* be provided the following content:
+- Gherkin feature files
+- language-specific instructions for generating Step Definitions
+
+You *might* be provided the following content:
+- step files that are already in use
+- utility files used by step files
+- unstructured ideas about implementation details
+- a suggested organizational scheme with which to categorize Step Definitions
+
+Your task: Generate a set of step files that contain Step Definitions for all provided Features that lack a @skip tag, following the provided language-specific instructions as well as these general instructions:
+
+** Step Definitions
+A Step Definition is a function with an expression that links it to one or more Gherkin steps. When Cucumber executes a Gherkin step in a Scenario, it will look for a matching Step Definition to execute. 
+
+When generating Step Definitions, generate test logic, but comment it out unless it's a simple one-liner. This is so Step Definitions can be uncommented and implemented one-by-one.
+
+Don't use global variables in Step Definitions, because these can result in accidentally sharing state between Scenarios.
+
+Do not put documentation, TODO comments, or other explanatory comments in Step Definitions.
+
+** Step files
+Step files should be named like <file name>_steps.<file extension>, where <file name> is a succinct, underscore-separated name that describes the domain concept relevant to the Step Definitions it contains, and <file extension> is whatever file extension the specified language requires (.py for Python, for example).
+
+** Organizing Step Definitions among step files
+If no organizational scheme has been provided, and there are no existing step files from which to derive one, organize Step Definitions into step files according to domain concepts (rather than coupling Step Definitions to Features or Scenarios). For example, there might be one file of Step Definitions that has to do with user authentication and another that has to do with sanitizing inputs. 
+
+If, according to the organizational scheme, a new Step Definition belongs in an existing step file, put it there. 
+
+** Utility files
+Any files that have the same file extension as the step files but do not contain "_steps" in the file name are utility files containing helper functions that are available to use in Step Definitions.

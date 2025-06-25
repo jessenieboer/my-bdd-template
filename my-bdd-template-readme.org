@@ -69,12 +69,11 @@ in ideas.txt and user-stories.org, replace >id< using
 note that for capture stuff to work correctly for a project, you have to create a symlink in <emacs dir>/org-roam/ to the project: in dired, put the cursor on the project's directory, dired-do-symlink, and enter <emacs dir>/org-roam/ when prompted for where to symlink from. this solves issues where you can capture correctly but the nodes don't seem to get indexed and nothing shows up for org-roam-node-find
 
 ** Use
-
 1. brainstorm ideas in bdd/ideas.txt
 2. ask the ai to generate user stories from the ideas
 3. copy the generated stories to bdd/user-stories.org; replace ">id<" with unique ids
 4. process user story with work management system; stories with "now" headlines will be processed by the ai
-5. upload user-stories.org to the ai and ask it to generate features
+5. upload user-stories.org to the ai and ask it to generate features 
 6. download feature files into bdd/features
 7. ask ai to generate step definitions for feature files; put in bdd/steps
 
