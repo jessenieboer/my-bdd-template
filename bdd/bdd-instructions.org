@@ -22,30 +22,86 @@ For further information on BDD principles and practices which should guide you i
 * Generating User Stories
 You *will* be provided with the following content:
 - unstructured text that contains natural-language brainstorming about desired system behavior
-- a format User Stories should be generated in
+- a format User Stories should be generated in (if none is specified, use jessenieboer's format)
 
 You *might* be provided with the following content:
+- existing User Stories
 - an organizational scheme with which to categorize User Stories
 - specific users of the system
 
-Your task: Generate User Stories from ideas.txt, taking into account any suggested organizational scheme and specified users. Generate as many User Stories as seems necessary to represent all the content in ideas.txt. Follow the general instructions described below, as well as the instructions for the specified User Story format.
+Your task: Generate User Stories from the provided natural-language text, taking into account any suggested organizational scheme and specified users, but ignoring any ideas about implementation details. Generate as many User Stories as seems necessary to represent all the content in the provided natural-language text. Follow the general instructions described below, as well as the instructions for the specified User Story format.
 
 ** Generating User Stories
+:PROPERTIES:
+:ID:       6d55f1a0-8c0a-4db2-a9cd-e059a4ff5445
+:END:
 Each User Story should be centered around a single behavior as experienced from a user's perspective and should follow the general pattern "As a <role>, I want <system capability>, so that <benefit>."
 
 User Stories should have the following characteristics:
 
 - Independent: The User Story should have minimal dependencies on other User Stories, so that it can be developed, tested, and delivered independently.
-- Negotiable: The User Story should be a starting point for discussion and collaboration rather than a rigid contract, so that developers and stakeholders can keep refining the details of the system as they discover what behavior they need from it.
+- Negotiable: The User Story should be a starting point for discussion and collaboration rather than a rigid contract, so that developers and stakeholders can keep refining the details of the system as they discover what behavior they need from it. (To achieve this, keep the language open-ended and make notes of ambiguities and questions in story notes).
 - Valuable: The User Story should deliver clear value to the user or stakeholder, so that nobody is wasting time or effort.
 - Estimable: The User Story should be clear enough to estimate the effort required to implement it, so that those who implement it can manage their workload.
 - Small: The User Story should be concise and focused, so that it can be quickly developed and delivered.
 - Testable: The User Story should have clear acceptance criteria that can be translated into testable Scenarios, so that the desired system behavior can be verified.
 
-** Categorizing User Stories
-User Stories should be categorized in some way that makes them easy for people to organize. If an organizational scheme has been suggested, use that to categorize User Stories. If no organizational scheme has been suggested, try to categorize User Stories by both user and system component. For example, a User Story about how a customer logs in to a screen could be categorized by both "customer" and "login screen".
+*** Examples of good User Stories for a website project
+from https://www.parabol.co/blog/user-story-examples/
 
-Systems that are small and simple don't need any categorization, because people can understand them without having to organize them.
+User Stories about logging in:
+#+BEGIN_EXAMPLE
+As a user, I want an option to stay logged in, so that I don’t have to enter my credentials every time.
+
+As a user, I want to be able to reset my password if I forget it, so that I can regain access to my account.
+
+As a user, I want to see an error message if I enter incorrect login details, so that I know when my login attempt has failed.
+#+END_EXAMPLE
+
+User Stories about registration:
+#+BEGIN_EXAMPLE
+As a user, I want to log in via my social media accounts, so that I can quickly access the platform without creating a new account.
+
+As a new user, I want to choose my own username and password during registration, so that I can personalize my login credentials.
+
+As a new user, I want to provide my basic information during registration, such as name and date of birth, so that I can personalize my profile.
+#+END_EXAMPLE
+
+User Stories about dashboards:
+#+BEGIN_EXAMPLE
+As a user, I want to customize my dashboard, so that I can choose which information is most important to me.
+
+As an admin, I want to see user statistics on my dashboard, so that I can monitor the platform’s usage.
+
+As a frequent customer, I want to see product recommendations on my dashboard, so that I can discover new products I might like.
+#+END_EXAMPLE
+
+
+*** Examples of good User Stories for business intelligence
+from https://savioglobal.com/blog/business-analysis/agile-user-stories-40-user-story-examples-format-templates-for-product-triumph/
+#+BEGIN_EXAMPLE
+As a marketing manager, I want to view real-time dashboards of customer behavior and engagement, so I can optimize marketing campaigns and improve customer retention.
+
+As a sales representative, I want to access detailed reports on customer interactions and sales performance, so I can identify sales trends and opportunities to improve performance.
+
+As a finance analyst, I want to generate ad-hoc reports on financial metrics and KPIs, so I can analyze financial performance and identify areas for cost reduction and optimization.
+
+As an operations manager, I want to monitor key performance indicators for operational efficiency, such as cycle time, throughput, and inventory levels, so I can identify opportunities to improve operational performance.
+
+As a product manager, I want to track customer feedback and sentiment data, so I can identify customer needs and preferences and make data-driven decisions about product development and marketing.
+#+END_EXAMPLE
+
+** Categorizing User Stories
+User Stories should be categorized in some way that makes them easy for people to organize.
+- If an organizational scheme has been suggested, use that to categorize User Stories.
+- If existing User Stories have been provided, derive an organizational scheme from them.
+- If no organizational scheme has been suggested and no existing User Stories have been provided, categorize User Stories with both a user category and "system concern" category. A user category should group stories by the user as described in provided in the User Story. A "system concern" category should group stories by an area of interest that the User Story is concerned with and should be generic enough to encompass many hypothetical user stories.
+
+For example, the website project User Stories listed above could be grouped by type of user (user, new user, admin, or frequent customer) and system component (login, registration, or dashboards). The User Story "As a user, I want to log in via my social media accounts, so that I can quickly access the platform without creating a new account." could be categorized as both "user" and "registration".
+
+As another example, the business intelligence User Stories listed above could be grouped by user's role (marketing manager, sales representative, finance analyst, operations manager, product manager) and business element being tracked (customers, financals, operations). The User Story "As a sales representative, I want to access detailed reports on customer interactions and sales performance, so I can identify sales trends and opportunities to improve performance." could be categorized as "sales representative", "customers", and "financials".
+
+Systems that are small and simple don't need any categorization, because people can understand them without having to organize them. 
 
 Each format described below will contain instructions on how to record categorizations.
 
@@ -68,7 +124,9 @@ Reproduce the template verbatim except for the enclosing quotation marks and the
 - <story tags> should be replaced with a set of org-mode tags that categorize the User Story. For example, the tags ":customer:login_screen:". Make sure story tags are separated by colons, that there is a colon at the beginning and the end of the list of tags, and that individual tags are underscore-separated if they contain multiple words. For example: ":tag_1:tag_2:etc:".
 - <story content> should be the text of the story according to the pattern "As a <role>, I want <system capability>, so that <benefit>.", although it could be expanded as necessary. Each phrase should be on a different line.
 - <story notes> should be replaced with any relevant notes or ideas that are associated with the User Story and are not already captured in <story content>.
-  
+
+The final output should contain only top-level org-mode headlines and their content.
+
 *** User Stories in jessenieboer's format
 For each User Story, use the following template (enclosed in quotes):
 "* future <story title> <story tags>
@@ -110,14 +168,17 @@ Reproduce the template verbatim except for the enclosing quotation marks and the
   
 Ignore the text ">id<"; it will be replaced. The output must be an org file, and each User Story must be a top-level headline.
 
+The final output should contain only top-level org-mode headlines and their content.
+
 * Generating and adjusting feature files
 You *will* be provided with the following content:
 - org files that contain User Stories in one of the formats described in the "User Story formats" section
 
 You *might* be provided with the following content:
 - Gherkin feature files
+- unstructured text that contains natural-language brainstorming about desired system behavior
 
-Your task: Generate a set of Gherkin feature files that fully satisfy all the provided User Stories. This means that the feature files should describe and make testable all the desired system capabilities contained within the provided User Stories.
+Your task: Generate a set of Gherkin feature files that fully satisfy all the provided User Stories. This means that the feature files should describe and make testable all the desired system capabilities contained within the provided User Stories. Take into account anything relevant in the provided natural-language text, if provided.
 
 ** Feature files
 Gherkin feature files contain 1 Feature and its associated Scenarios. A Feature should look like this:
@@ -156,7 +217,7 @@ Begin by generating Scenarios for base cases, then generate Scenarios for what w
 *** Miscellaneous
 Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios".
 
-Put quotation marks around step arguments that are strings, as this increases clarity. When using an empty string as a step argument, make sure the string is explicitly represented by ""
+When using an empty string as a step argument, make sure the string is explicitly represented by ""
 
 When using Data Tables in Scenarios, make sure each column has a name.
 
@@ -171,12 +232,13 @@ You *will* be provided the following content:
 - language-specific instructions for generating Step Definitions
 
 You *might* be provided the following content:
+- unstructured text that contains natural-language brainstorming that may contain implementation ideas
 - step files that are already in use
 - utility files used by step files
-- unstructured ideas about implementation details
+- unstructured text that contains natural-language brainstorming about desired system behavior, which may include implementation details
 - a suggested organizational scheme with which to categorize Step Definitions
 
-Your task: Generate a set of step files that contain Step Definitions for all provided Features that lack a @skip tag, following the provided language-specific instructions as well as these general instructions:
+Your task: Generate a set of step files that contain Step Definitions for all provided Features that lack a @skip tag, taking into account any implementation details in the natural-language text (if provided) and following the provided language-specific instructions as well as these general instructions:
 
 ** Step Definitions
 A Step Definition is a function with an expression that links it to one or more Gherkin steps. When Cucumber executes a Gherkin step in a Scenario, it will look for a matching Step Definition to execute. 
