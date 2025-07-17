@@ -1,4 +1,4 @@
-#+html:<h1 align="center">Repo title</h1>
+#+html:<h1 align="center">Repo name</h1>
 * Table of Contents
 - [[#what][What]]
   - [[#features][Features]]

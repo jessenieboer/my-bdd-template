@@ -20,18 +20,19 @@ For further information on BDD principles and practices which should guide you i
 - https://jennyjmar.com/2016/04/16/bdd-discovery-and-oopsi/
 
 * Generating User Stories
+** Task input
 You *will* be provided with the following content:
 - unstructured text that contains natural-language brainstorming about desired system behavior
-- a format User Stories should be generated in (if none is specified, use jessenieboer's format)
 
 You *might* be provided with the following content:
+- a format User Stories should be generated in
 - existing User Stories
 - an organizational scheme with which to categorize User Stories
 - specific users of the system
 
-Your task: Generate User Stories from the provided natural-language text, taking into account any suggested organizational scheme and specified users, but ignoring any ideas about implementation details. Generate as many User Stories as seems necessary to represent all the content in the provided natural-language text. Follow the general instructions described below, as well as the instructions for the specified User Story format.
-
-** Generating User Stories
+Your task: Generate User Stories from the provided natural-language text, taking into account any suggested organizational scheme and specified users, but ignoring any ideas about implementation details. Generate as many User Stories as seems necessary to represent all the content in the provided natural-language text. Follow the general instructions described below, as well as the instructions for the specified User Story format (if no format is specified, use jessenieboer's format)
+** Task instructions
+*** Generating User Stories
 :PROPERTIES:
 :ID:       6d55f1a0-8c0a-4db2-a9cd-e059a4ff5445
 :END:
@@ -46,7 +47,7 @@ User Stories should have the following characteristics:
 - Small: The User Story should be concise and focused, so that it can be quickly developed and delivered.
 - Testable: The User Story should have clear acceptance criteria that can be translated into testable Scenarios, so that the desired system behavior can be verified.
 
-*** Examples of good User Stories for a website project
+**** Examples of good User Stories for a website project
 from https://www.parabol.co/blog/user-story-examples/
 
 User Stories about logging in:
@@ -77,7 +78,7 @@ As a frequent customer, I want to see product recommendations on my dashboard, s
 #+END_EXAMPLE
 
 
-*** Examples of good User Stories for business intelligence
+**** Examples of good User Stories for business intelligence
 from https://savioglobal.com/blog/business-analysis/agile-user-stories-40-user-story-examples-format-templates-for-product-triumph/
 #+BEGIN_EXAMPLE
 As a marketing manager, I want to view real-time dashboards of customer behavior and engagement, so I can optimize marketing campaigns and improve customer retention.
@@ -91,7 +92,7 @@ As an operations manager, I want to monitor key performance indicators for opera
 As a product manager, I want to track customer feedback and sentiment data, so I can identify customer needs and preferences and make data-driven decisions about product development and marketing.
 #+END_EXAMPLE
 
-** Categorizing User Stories
+*** Categorizing User Stories
 User Stories should be categorized in some way that makes them easy for people to organize.
 - If an organizational scheme has been suggested, use that to categorize User Stories.
 - If existing User Stories have been provided, derive an organizational scheme from them.
@@ -105,8 +106,10 @@ Systems that are small and simple don't need any categorization, because people 
 
 Each format described below will contain instructions on how to record categorizations.
 
-** User Story formats
-*** User Stories in org-mode format
+If existing User Stories have been provided, you may recategorize them to fit the organizational scheme you are using.
+
+*** User Story formats
+**** User Stories in org-mode format
 For each User Story, use the following template (enclosed in quotes):
 "* <story title> <story tags>
 
@@ -125,9 +128,7 @@ Reproduce the template verbatim except for the enclosing quotation marks and the
 - <story content> should be the text of the story according to the pattern "As a <role>, I want <system capability>, so that <benefit>.", although it could be expanded as necessary. Each phrase should be on a different line.
 - <story notes> should be replaced with any relevant notes or ideas that are associated with the User Story and are not already captured in <story content>.
 
-The final output should contain only top-level org-mode headlines and their content.
-
-*** User Stories in jessenieboer's format
+**** User Stories in jessenieboer's format
 For each User Story, use the following template (enclosed in quotes):
 "* future <story title> <story tags>
 :PROPERTIES:
@@ -168,9 +169,10 @@ Reproduce the template verbatim except for the enclosing quotation marks and the
   
 Ignore the text ">id<"; it will be replaced. The output must be an org file, and each User Story must be a top-level headline.
 
-The final output should contain only top-level org-mode headlines and their content.
-
+** Task output
+The output should contain only top-level org-mode headlines and their content, in a code block I can copy/paste.
 * Generating and adjusting feature files
+** Task input
 You *will* be provided with the following content:
 - org files that contain User Stories in one of the formats described in the "User Story formats" section
 
@@ -178,9 +180,10 @@ You *might* be provided with the following content:
 - Gherkin feature files
 - unstructured text that contains natural-language brainstorming about desired system behavior
 
-Your task: Generate a set of Gherkin feature files that fully satisfy all the provided User Stories. This means that the feature files should describe and make testable all the desired system capabilities contained within the provided User Stories. Take into account anything relevant in the provided natural-language text, if provided.
+** Task instructions
+Generate a set of Gherkin feature files that fully satisfy all the provided User Stories. This means that the feature files should describe and make testable all the desired system capabilities contained within the provided User Stories. Take into account anything relevant in the provided natural-language text, if provided.
 
-** Feature files
+*** Feature files
 Gherkin feature files contain 1 Feature and its associated Scenarios. A Feature should look like this:
 #+BEGIN_SRC feature
   Feature: <title>
@@ -197,12 +200,11 @@ where <title> is the name of Feature, <narrative section> is a succinct, natural
 
 All feature files should be named identically to the Feature's title, except the file name should be separated by underscores, and it should have the .feature extension.
 
-** Features
+*** Features
 A Feature should describe a single system capability derived from the User Stories. User Stories might not map one-to-one to Features. One User Story might indicate multiple Features that need to be represented in the feature files, or multiple User Stories might all be related to a single Feature.
 
 Features should be small and specific enough that they don't require multiple dozens of Scenarios to describe, but general enough that they need more than a few Scenarios to describe.
-
-** Scenarios
+*** Scenarios
 A Scenario should be a concrete, testable example of one aspect of the system capability described by its Feature. Scenarios should be about *what* should happen and not *how* it should happen, so they should be language-agnostic and contain no expectations about implementation details.
 
 Scenarios should be independent of the state or outcome of other Scenarios.
@@ -211,10 +213,12 @@ For each Feature, generate as many Scenarios as is required to fully test and im
 
 Add the @skip tag to each Scenario, so that they can be tested and implemented one-by-one by removing the tag from the Scenario.
 
-*** Process
+All tags should be on the line directly above their associated Scenario. Each step should be on a new line.
+
+**** Suggested scenario generation process
 Begin by generating Scenarios for base cases, then generate Scenarios for what would be normal, expected behavior and normal, expected inputs (apart from the base cases), and finally generate Scenarios for edge cases, unexpected behavior and inputs, and errors. For each base case Scenario, add a @base tag. For each normal, expected Scenario add a @normal tag. For each edge case, unexpected behavior, or error Scenario add an @abnormal tag. In the Feature file, put Scenarios in that order: base, normal, abnormal.
 
-*** Miscellaneous
+**** Miscellaneous
 Regarding keywords, use "Scenario" rather than "Example", "Scenario Outline" rather than "Scenario Template", and, within Scenario Outlines, "Examples" rather than "Scenarios".
 
 When using an empty string as a step argument, make sure the string is explicitly represented by ""
@@ -223,10 +227,13 @@ When using Data Tables in Scenarios, make sure each column has a name.
 
 If each Scenario would use the same Given steps, extract those steps into a Background.
 
-** Organizing Features among files
+*** Organizing Features among files
 If a User Story's desired behavior could be part of an existing Feature in a provided feature file, iterate on that Feature, perhaps by adding new Scenarios or editing existing ones. Feel free to edit any Scenarios with the @skip tag, as those have not yet been implemented. If a Scenario does not have a @skip tag, do not edit it. You are also free to edit an existing Feature's narrative section.
 
+** Task output
+Present your output as a set of feature files, each in its own gherkin code block that i can copy/paste, that has the file name as the header.
 * Generating and adjusting step files
+** Task input
 You *will* be provided the following content:
 - Gherkin feature files
 - language-specific instructions for generating Step Definitions
@@ -237,25 +244,32 @@ You *might* be provided the following content:
 - utility files used by step files
 - unstructured text that contains natural-language brainstorming about desired system behavior, which may include implementation details
 - a suggested organizational scheme with which to categorize Step Definitions
+  
+** Task instructions
+Generate a set of step files that contain Step Definitions for all provided Features that do not have @skip tags.
 
-Your task: Generate a set of step files that contain Step Definitions for all provided Features that lack a @skip tag, taking into account any implementation details in the natural-language text (if provided) and following the provided language-specific instructions as well as these general instructions:
+Taking into account any implementation details in the natural-language text (if provided) and follow the provided language-specific instructions as well as these general instructions:
 
-** Step Definitions
+*** Generating Step Definitions
 A Step Definition is a function with an expression that links it to one or more Gherkin steps. When Cucumber executes a Gherkin step in a Scenario, it will look for a matching Step Definition to execute. 
 
-When generating Step Definitions, generate test logic, but comment it out unless it's a simple one-liner. This is so Step Definitions can be uncommented and implemented one-by-one.
+Do not use global variables in Step Definitions, because these can result in accidentally sharing state between Scenarios.
 
-Don't use global variables in Step Definitions, because these can result in accidentally sharing state between Scenarios.
+Do not TODO comments in Step Definitions.
 
-Do not put documentation, TODO comments, or other explanatory comments in Step Definitions.
+Maximize reuse among Step Definitions; don't generate a new Step Definition if an existing one can be used.
 
-** Step files
-Step files should be named like <file name>_steps.<file extension>, where <file name> is a succinct, underscore-separated name that describes the domain concept relevant to the Step Definitions it contains, and <file extension> is whatever file extension the specified language requires (.py for Python, for example).
+*** Naming step files
+Name step files like <file name>_steps.<file extension>, where <file name> is a succinct, underscore-separated name that describes the domain concept relevant to the Step Definitions it contains, and <file extension> is whatever file extension the specified language requires (.py for Python, for example).
 
-** Organizing Step Definitions among step files
-If no organizational scheme has been provided, and there are no existing step files from which to derive one, organize Step Definitions into step files according to domain concepts (rather than coupling Step Definitions to Features or Scenarios). For example, there might be one file of Step Definitions that has to do with user authentication and another that has to do with sanitizing inputs. 
+*** Using and generating utilities
+Any files provided that have the same file extension as the step files but do not contain "_steps" in the file name are utility files containing helper functions that are available to use in Step Definitions. Use those helper functions in Step Definitions where appropriate.
 
-If, according to the organizational scheme, a new Step Definition belongs in an existing step file, put it there. 
+If logic is reused among multiple Step Definitions within the same file, generate a helper function within that file. If a function can be used among multiple step files, put that function in a separate utility file. 
 
-** Utility files
-Any files that have the same file extension as the step files but do not contain "_steps" in the file name are utility files containing helper functions that are available to use in Step Definitions.
+*** Organizing Step Definitions among step files
+Analyze any provided step files to discern naming and grouping of Step Definitions, and take into account any suggested organizational scheme.
+
+If neither an organizational scheme nor existing step files have been provided, organize Step Definitions into step files according to domain concepts (rather than coupling Step Definitions to Features or Scenarios). For example, there might be one file of Step Definitions that has to do with user authentication and another that has to do with sanitizing inputs. 
+
+** Task output
