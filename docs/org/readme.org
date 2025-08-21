@@ -1,0 +1,66 @@
+#+EXPORT_FILE_NAME: ../../README.md
+#+OPTIONS: toc:t num:nil
+#+TITLE: Repo Title
+
+#+html:<h1 align="center">Repo Title</h1>
+
+* What
+:PROPERTIES:
+:CUSTOM_ID: what
+:END:
+** Features
+:PROPERTIES:
+:CUSTOM_ID: features
+:END:
+* Why
+:PROPERTIES:
+:CUSTOM_ID: why
+:END:
+* For Whom
+:PROPERTIES:
+:CUSTOM_ID: for-whom
+:END:
+* How
+:PROPERTIES:
+:CUSTOM_ID: how
+:END:
+** Requirements
+:PROPERTIES:
+:CUSTOM_ID: requirements
+:END:
+** Installation
+:PROPERTIES:
+:CUSTOM_ID: installation
+:END:
+** Use
+:PROPERTIES:
+:CUSTOM_ID: use
+:END:
+*** License
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
+** Development
+:PROPERTIES:
+:CUSTOM_ID: development
+:END:
+*** Process
+:PROPERTIES:
+:CUSTOM_ID: process
+:END:
+*** Important Decisions
+:PROPERTIES:
+:CUSTOM_ID: important-decisions
+:END:
+*** To do
+:PROPERTIES:
+:CUSTOM_ID: to-do
+:END:
+*** Contributing
+:PROPERTIES:
+:CUSTOM_ID: contributing
+:END:
+* By Whom
+:PROPERTIES:
+:CUSTOM_ID: by-whom
+:END:
