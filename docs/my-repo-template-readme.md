@@ -21,15 +21,23 @@
 
 # What
 
+My repo template for personal use
+
 
 <a id="features"></a>
 
 ## Features
 
+-   Provides a well-organized readme template
+-   Provides my preferred git options, including a commit message template
+-   Allows for editing readmes in org mode and converting to markdown
+
 
 <a id="why"></a>
 
 # Why
+
+So I can have consistency across my projects
 
 
 <a id="for-whom"></a>
