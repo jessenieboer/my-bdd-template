@@ -1,0 +1,71 @@
+#+EXPORT_FILE_NAME: ../../docs/my-repo-template-readme.md
+#+OPTIONS: toc:t num:nil
+#+TITLE: jessenieboer's repo template
+
+#+html:<h1 align="center">jessenieboer's repo template</h1>
+
+* What
+:PROPERTIES:
+:CUSTOM_ID: what
+:END:
+My repo template for personal use
+** Features
+:PROPERTIES:
+:CUSTOM_ID: features
+:END:
+- Provides a well-organized readme template
+- Provides my preferred git options, including a commit message template
+- Allows for editing readmes in org mode and converting to markdown
+* Why
+:PROPERTIES:
+:CUSTOM_ID: why
+:END:
+So I can have consistency across my projects
+* For Whom
+:PROPERTIES:
+:CUSTOM_ID: for-whom
+:END:
+* How
+:PROPERTIES:
+:CUSTOM_ID: how
+:END:
+** Requirements
+:PROPERTIES:
+:CUSTOM_ID: requirements
+:END:
+** Installation
+:PROPERTIES:
+:CUSTOM_ID: installation
+:END:
+** Use
+:PROPERTIES:
+:CUSTOM_ID: use
+:END:
+*** License
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
+** Development
+:PROPERTIES:
+:CUSTOM_ID: development
+:END:
+*** Process
+:PROPERTIES:
+:CUSTOM_ID: process
+:END:
+*** Important Decisions
+:PROPERTIES:
+:CUSTOM_ID: important-decisions
+:END:
+*** To do
+:PROPERTIES:
+:CUSTOM_ID: to-do
+:END:
+*** Contributing
+:PROPERTIES:
+:CUSTOM_ID: contributing
+:END:
+* By Whom
+:PROPERTIES:
+:CUSTOM_ID: by-whom
+:END:

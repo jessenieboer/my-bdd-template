@@ -1,4 +1,6 @@
-#+html:<h1 align="center">My BDD project template</h1>
+#+EXPORT_FILE_NAME: ../../docs/my-bdd-template-readme.md
+#+OPTIONS: toc:t num:nil
+#+TITLE: jessenieboer's bdd template
 * Table of Contents
 - [[#what][What]]
   - [[#features][Features]]
@@ -19,13 +21,7 @@
 * What
 repo template for bdd projects
 ** Features
-Capture unstructured text to bdd/ideas.txt
 
-Capture user stories in bdd/user-stories.org
-
-Use user stories to write Features in Gherkin
-
-Put step definitions in bdd/steps
 
 
 
@@ -81,68 +77,6 @@ have user-stories.org with story headlines and testable scenarios below that. te
 
 tangle to generate test files?
 *** development process
-**** capture requirements
-capture software requirements in either of these forms:
-- idea :: anything worth writing down
-  - unstructured text 
-  - /bdd/ideas.txt
-- story :: a more fleshed-out requirement in a specific format
-  - /bdd/stories.org
-  - title + metadata + story text
-    - story text is in the form of "as a <role>, i want <feature> so that <benefit>" to stories.org
-    - title should succinctly describe the desired feature
-    - metadata has to do with work management:
-      :ID: <id>
-      :CATEGORY: task
-      :EFFORT_TYPE: work
-      :FREQUENCY: once
-      :HAS_DUE_DATE: no
-      :EFFORT_AMOUNT: average
-      :BUDGET_IMPACT: trivial
-      :COMMITMENT: probably
-      :HARD_DATE_DEPENDENCY: no
-      :SOFT_DATE_DEPENDENCY: no
-      :HARD_INTERNAL_DEPENDENCY: no
-      :SOFT_INTERNAL_DEPENDENCY: no
-      :HARD_EXTERNAL_DEPENDENCY: no
-      :SOFT_EXTERNAL_DEPENDENCY: no
-      :EFFORT: 0d
-      :ESTIMATED_COST: 0
-      :ACTUAL_EFFORT: 
-      :ACTUAL_COST: 
-**** generate stories
-give the ai ai-instructions.org and ask it to generate stories for ideas.txt
-
-review and edit the output, and then combine with any stories you wrote yoursevlf.
-
-record everything in stories.org; replace all instances of >id< with a new org id
-
-#+BEGIN_SRC emacs-lisp
-(defun my-replace-ids-with-uuids ()
-  "Replace each instance of '>id<' with a unique new Org ID in the current buffer."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (search-forward ">id<" nil t)
-      (replace-match (org-id-new) t t))))
-#+END_SRC
-
-keep all stories at the same headline level; use tags to categorize and agenda views to sort and filter?
-
-use quotes to denote strings in gherkin step arguments (for sake of clarity)
-
-**** generate scenarios
-give the ai ai-instructions.org and ask it to generate scenarios for stories.org
-
-review and edit the output, and then combine with any scenarios you wrote yourself.
-- could be many scenarios generated from a single user story
-
-at this point, tangle to standalone feature files in /bdd/features. note that you might have to create the directory
-
-running your test framework at this point should give you "Step definition is not found" errors
-
-**** generate tests
-give the ai all your feature files and ask it to generate tests.  
 
 *** troubleshooting
 i had an issue where capturing an idea to ideas.txt was giving me "org-fold-region: Calling ‘org-fold-core-region’ with missing SPEC", and changing the roam template's target file from /home/jessenieboer/kingdom/projects to ~/kingdom/projects supposedely fixed it. but i also had an issue with user stories being captured as a second level headline in user-stories.org, rather that a first level. i deleted the existing "check friday" story and then it stopped forcing second-level headlines. after experimentation, it seems the issue is that you need file level properties drawers with ids in it for org-roam, so i added that with the placeholder >id< to ideas.txt and user-stories.org, which you must replace with an actual org id using (insert (org-id-new))

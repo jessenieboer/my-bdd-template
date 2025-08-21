@@ -1,0 +1,12 @@
+[branch]
+    autosetuprebase = always
+[branch "master"]
+    mergeOptions = --ff-only
+[commit]
+    cleanup = strip
+    #status = false
+    template = .gitmessage
+[core]
+    autocrlf = false
+    fileMode = false
+    safecrlf = true

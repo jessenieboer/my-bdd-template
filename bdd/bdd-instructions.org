@@ -239,10 +239,9 @@ You *will* be provided the following content:
 - language-specific instructions for generating Step Definitions
 
 You *might* be provided the following content:
-- unstructured text that contains natural-language brainstorming that may contain implementation ideas
+- unstructured text that contains natural-language brainstorming about desired system behavior which may contain implementation ideas
 - step files that are already in use
 - utility files used by step files
-- unstructured text that contains natural-language brainstorming about desired system behavior, which may include implementation details
 - a suggested organizational scheme with which to categorize Step Definitions
   
 ** Task instructions

@@ -1,0 +1,189 @@
+#+EXPORT_FILE_NAME: ../../docs/my-bdd-template-readme.md
+#+OPTIONS: toc:t num:nil
+#+TITLE: jessenieboer's bdd template
+
+#+html:<h1 align="center">jessenieboer's bdd template</h1>
+
+* What
+:PROPERTIES:
+:CUSTOM_ID: what
+:END:
+My repo template for BDD projects
+** Features
+:PROPERTIES:
+:CUSTOM_ID: features
+:END:
+- Provides instructions for AI to
+  - Generate user stories from unstructured text
+  - Generate Gherkin feature files from user stories
+  - Generate step files from feature files (as long as separate language-specific instructions are also included)
+- Allows for capturing unstructured text
+- Allows for capturing user stories in an org mode format
+- Allows for processing user stories with agenda
+* Why
+:PROPERTIES:
+:CUSTOM_ID: why
+:END:
+To provide a good starting point for AI-empowered BDD projects
+* For Whom
+:PROPERTIES:
+:CUSTOM_ID: for-whom
+:END:
+* How
+:PROPERTIES:
+:CUSTOM_ID: how
+:END:
+** Requirements
+:PROPERTIES:
+:CUSTOM_ID: requirements
+:END:
+** Installation
+:PROPERTIES:
+:CUSTOM_ID: installation
+:END:
+for an independent project, create repo from git@github.com:jessenieboer/python-bdd-project-template.git
+
+to add as a subdirectory to an existing project, use git subtree:
+#+BEGIN_SRC
+git subtree add --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
+#+END_SRC
+
+for integrating template changes:
+#+BEGIN_SRC
+git subtree pull --prefix=your_subdir_name git@github.com:jessenieboer/my-bdd-template.git master --squash
+#+END_SRC
+
+add your project name and hard-code paths to user-stories.org, ideas.org, and story-template.org in project.el.
+#+BEGIN_SRC emacs-lisp
+  `(:project-tags ("<project_name>")
+  		:roam-files ("<path to project dir>/bdd/user-stories.org")
+  		:roam-templates (("s" "Idea" plain
+  				  "${title}"
+  				  :target (file "<path to project dir>/bdd/ideas.txt")
+  				  :empty-lines 1
+  				  :immediate-finish)
+  				 ("e" "User Story" entry
+  				  (file "<path to project dir>/bdd/user-story-template.org")
+  				  :target (file "<path to project dir>/bdd/user-stories.org")))
+  		...)
+#+END_SRC
+
+in ideas.txt and user-stories.org, replace >id< using
+#+BEGIN_SRC emacs-lisp
+(insert (org-id-new))
+#+END_SRC
+
+note that for capture stuff to work correctly for a project, you have to create a symlink in <emacs dir>/org-roam/ to the project: in dired, put the cursor on the project's directory, dired-do-symlink, and enter <emacs dir>/org-roam/ when prompted for where to symlink from. this solves issues where you can capture correctly but the nodes don't seem to get indexed and nothing shows up for org-roam-node-find
+** Use
+:PROPERTIES:
+:CUSTOM_ID: use
+:END:
+*** Overview
+1. Brainstorm in bdd/ideas.txt
+2. Use AI to generate user stories from ideas.txt
+3. Copy the generated stories to bdd/user-stories.org; replace ">id<" with unique ids
+4. Use AI to generate Gherkin features from user-stories.org
+5. Put feature files into bdd/features
+6. Using additional programming-language-specific instructions (not provided here), use AI to generate step definitions for feature files
+7. Put step definitions in bdd/steps
+
+*** Details
+have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
+
+tangle to generate test files?
+
+**** capture requirements
+capture software requirements in either of these forms:
+- idea :: anything worth writing down
+  - unstructured text 
+  - /bdd/ideas.txt
+- story :: a more fleshed-out requirement in a specific format
+  - /bdd/stories.org
+  - title + metadata + story text
+    - story text is in the form of "as a <role>, i want <feature> so that <benefit>" to stories.org
+    - title should succinctly describe the desired feature
+    - metadata has to do with work management:
+      :ID: <id>
+      :CATEGORY: task
+      :EFFORT_TYPE: work
+      :FREQUENCY: once
+      :HAS_DUE_DATE: no
+      :EFFORT_AMOUNT: average
+      :BUDGET_IMPACT: trivial
+      :COMMITMENT: probably
+      :HARD_DATE_DEPENDENCY: no
+      :SOFT_DATE_DEPENDENCY: no
+      :HARD_INTERNAL_DEPENDENCY: no
+      :SOFT_INTERNAL_DEPENDENCY: no
+      :HARD_EXTERNAL_DEPENDENCY: no
+      :SOFT_EXTERNAL_DEPENDENCY: no
+      :EFFORT: 0d
+      :ESTIMATED_COST: 0
+      :ACTUAL_EFFORT: 
+      :ACTUAL_COST: 
+**** generate stories
+give the ai ai-instructions.org and ask it to generate stories for ideas.txt
+
+review and edit the output, and then combine with any stories you wrote yoursevlf.
+
+record everything in stories.org; replace all instances of >id< with a new org id
+
+#+BEGIN_SRC emacs-lisp
+(defun my-replace-ids-with-uuids ()
+  "Replace each instance of '>id<' with a unique new Org ID in the current buffer."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward ">id<" nil t)
+      (replace-match (org-id-new) t t))))
+#+END_SRC
+
+keep all stories at the same headline level; use tags to categorize and agenda views to sort and filter?
+
+use quotes to denote strings in gherkin step arguments (for sake of clarity)
+
+**** generate scenarios
+give the ai ai-instructions.org and ask it to generate scenarios for stories.org
+
+review and edit the output, and then combine with any scenarios you wrote yourself.
+- could be many scenarios generated from a single user story
+
+at this point, tangle to standalone feature files in /bdd/features. note that you might have to create the directory
+
+running your test framework at this point should give you "Step definition is not found" errors
+
+**** generate tests
+give the ai all your feature files and ask it to generate tests.
+
+**** troubleshooting
+i had an issue where capturing an idea to ideas.txt was giving me "org-fold-region: Calling ‘org-fold-core-region’ with missing SPEC", and changing the roam template's target file from /home/jessenieboer/kingdom/projects to ~/kingdom/projects supposedely fixed it. but i also had an issue with user stories being captured as a second level headline in user-stories.org, rather that a first level. i deleted the existing "check friday" story and then it stopped forcing second-level headlines. after experimentation, it seems the issue is that you need file level properties drawers with ids in it for org-roam, so i added that with the placeholder >id< to ideas.txt and user-stories.org, which you must replace with an actual org id using (insert (org-id-new))
+*** License
+:PROPERTIES:
+:CUSTOM_ID: license
+:END:
+** Development
+:PROPERTIES:
+:CUSTOM_ID: development
+:END:
+*** Process
+:PROPERTIES:
+:CUSTOM_ID: process
+:END:
+*** Important Decisions
+:PROPERTIES:
+:CUSTOM_ID: important-decisions
+:END:
+*** To do
+:PROPERTIES:
+:CUSTOM_ID: to-do
+:ID:       79803108-1cd4-4260-8b99-635470286288
+:END:
+Edit use details
+*** Contributing
+:PROPERTIES:
+:CUSTOM_ID: contributing
+:END:
+* By Whom
+:PROPERTIES:
+:CUSTOM_ID: by-whom
+:END:
