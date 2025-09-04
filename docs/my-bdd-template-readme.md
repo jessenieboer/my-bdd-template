@@ -6,9 +6,7 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Use](#use)
-    - [Overview](#orgf575dbe)
-    - [Details](#orgbbe785f)
-    - [License](#license)
+    - [Details](#details)
   - [Development](#development)
     - [Process](#process)
     - [Important Decisions](#important-decisions)
@@ -108,11 +106,6 @@ note that for capture stuff to work correctly for a project, you have to create 
 
 ## Use
 
-
-<a id="orgf575dbe"></a>
-
-### Overview
-
 1.  Brainstorm in bdd/ideas.txt
 2.  Use AI to generate user stories from ideas.txt
 3.  Copy the generated stories to bdd/user-stories.org; replace ">id<" with unique ids
@@ -122,7 +115,7 @@ note that for capture stuff to work correctly for a project, you have to create 
 7.  Put step definitions in bdd/steps
 
 
-<a id="orgbbe785f"></a>
+<a id="details"></a>
 
 ### Details
 
@@ -130,7 +123,7 @@ have user-stories.org with story headlines and testable scenarios below that. te
 
 tangle to generate test files?
 
--   capture requirements
+-   Capture Requirements
 
     capture software requirements in either of these forms:
     
@@ -144,7 +137,7 @@ tangle to generate test files?
             -   title should succinctly describe the desired feature
             -   metadata has to do with work management: :ID: <id> :CATEGORY: task :EFFORT<sub>TYPE</sub>: work :FREQUENCY: once :HAS<sub>DUE</sub><sub>DATE</sub>: no :EFFORT<sub>AMOUNT</sub>: average :BUDGET<sub>IMPACT</sub>: trivial :COMMITMENT: probably :HARD<sub>DATE</sub><sub>DEPENDENCY</sub>: no :SOFT<sub>DATE</sub><sub>DEPENDENCY</sub>: no :HARD<sub>INTERNAL</sub><sub>DEPENDENCY</sub>: no :SOFT<sub>INTERNAL</sub><sub>DEPENDENCY</sub>: no :HARD<sub>EXTERNAL</sub><sub>DEPENDENCY</sub>: no :SOFT<sub>EXTERNAL</sub><sub>DEPENDENCY</sub>: no :EFFORT: 0d :ESTIMATED<sub>COST</sub>: 0 :ACTUAL<sub>EFFORT</sub>: :ACTUAL<sub>COST</sub>:
 
--   generate stories
+-   Generate Stories
 
     give the ai ai-instructions.org and ask it to generate stories for ideas.txt
     
@@ -166,7 +159,7 @@ tangle to generate test files?
     
     use quotes to denote strings in gherkin step arguments (for sake of clarity)
 
--   generate scenarios
+-   Generate Scenarios
 
     give the ai ai-instructions.org and ask it to generate scenarios for stories.org
     
@@ -178,18 +171,13 @@ tangle to generate test files?
     
     running your test framework at this point should give you "Step definition is not found" errors
 
--   generate tests
+-   Generate Tests
 
     give the ai all your feature files and ask it to generate tests.
 
--   troubleshooting
+-   Troubleshooting
 
-    i had an issue where capturing an idea to ideas.txt was giving me "org-fold-region: Calling ‘org-fold-core-region’ with missing SPEC", and changing the roam template's target file from /home/jessenieboer/kingdom/projects to ~/kingdom/projects supposedely fixed it. but i also had an issue with user stories being captured as a second level headline in user-stories.org, rather that a first level. i deleted the existing "check friday" story and then it stopped forcing second-level headlines. after experimentation, it seems the issue is that you need file level properties drawers with ids in it for org-roam, so i added that with the placeholder >id< to ideas.txt and user-stories.org, which you must replace with an actual org id using (insert (org-id-new))
-
-
-<a id="license"></a>
-
-### License
+-   License
 
 
 <a id="development"></a>

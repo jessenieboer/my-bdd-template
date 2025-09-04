@@ -78,7 +78,6 @@ note that for capture stuff to work correctly for a project, you have to create 
 :PROPERTIES:
 :CUSTOM_ID: use
 :END:
-*** Overview
 1. Brainstorm in bdd/ideas.txt
 2. Use AI to generate user stories from ideas.txt
 3. Copy the generated stories to bdd/user-stories.org; replace ">id<" with unique ids
@@ -86,13 +85,15 @@ note that for capture stuff to work correctly for a project, you have to create 
 5. Put feature files into bdd/features
 6. Using additional programming-language-specific instructions (not provided here), use AI to generate step definitions for feature files
 7. Put step definitions in bdd/steps
-
 *** Details
+:PROPERTIES:
+:CUSTOM_ID: details
+:END:
 have user-stories.org with story headlines and testable scenarios below that. testable scenarios have accompanying code. if some tests need to be grouped together for context reasons, have a separate test structure tree (sessions/packages/modules/classes) and use noweb stuff to keep things organized
 
 tangle to generate test files?
 
-**** capture requirements
+**** Capture Requirements
 capture software requirements in either of these forms:
 - idea :: anything worth writing down
   - unstructured text 
@@ -121,7 +122,7 @@ capture software requirements in either of these forms:
       :ESTIMATED_COST: 0
       :ACTUAL_EFFORT: 
       :ACTUAL_COST: 
-**** generate stories
+**** Generate Stories
 give the ai ai-instructions.org and ask it to generate stories for ideas.txt
 
 review and edit the output, and then combine with any stories you wrote yoursevlf.
@@ -142,7 +143,7 @@ keep all stories at the same headline level; use tags to categorize and agenda v
 
 use quotes to denote strings in gherkin step arguments (for sake of clarity)
 
-**** generate scenarios
+**** Generate Scenarios
 give the ai ai-instructions.org and ask it to generate scenarios for stories.org
 
 review and edit the output, and then combine with any scenarios you wrote yourself.
@@ -152,12 +153,14 @@ at this point, tangle to standalone feature files in /bdd/features. note that yo
 
 running your test framework at this point should give you "Step definition is not found" errors
 
-**** generate tests
+**** Generate Tests
 give the ai all your feature files and ask it to generate tests.
 
-**** troubleshooting
-i had an issue where capturing an idea to ideas.txt was giving me "org-fold-region: Calling ‘org-fold-core-region’ with missing SPEC", and changing the roam template's target file from /home/jessenieboer/kingdom/projects to ~/kingdom/projects supposedely fixed it. but i also had an issue with user stories being captured as a second level headline in user-stories.org, rather that a first level. i deleted the existing "check friday" story and then it stopped forcing second-level headlines. after experimentation, it seems the issue is that you need file level properties drawers with ids in it for org-roam, so i added that with the placeholder >id< to ideas.txt and user-stories.org, which you must replace with an actual org id using (insert (org-id-new))
-*** License
+**** Troubleshooting
+:PROPERTIES:
+:CUSTOM_ID: troubleshooting
+:END:
+**** License
 :PROPERTIES:
 :CUSTOM_ID: license
 :END:
@@ -176,7 +179,6 @@ i had an issue where capturing an idea to ideas.txt was giving me "org-fold-regi
 *** To do
 :PROPERTIES:
 :CUSTOM_ID: to-do
-:ID:       79803108-1cd4-4260-8b99-635470286288
 :END:
 Edit use details
 *** Contributing
@@ -187,3 +189,4 @@ Edit use details
 :PROPERTIES:
 :CUSTOM_ID: by-whom
 :END:
+
