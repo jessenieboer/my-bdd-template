@@ -6,7 +6,7 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Use](#use)
-    - [License](#license)
+    - [Details](#details)
   - [Development](#development)
     - [Process](#process)
     - [Important Decisions](#important-decisions)
@@ -57,9 +57,13 @@
 ## Use
 
 
-<a id="license"></a>
+<a id="details"></a>
 
-### License
+### Details
+
+-   Troubleshooting
+
+-   License
 
 
 <a id="development"></a>

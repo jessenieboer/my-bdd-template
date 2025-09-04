@@ -6,7 +6,7 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Use](#use)
-    - [License](#license)
+    - [Details](#details)
   - [Development](#development)
     - [Process](#process)
     - [Important Decisions](#important-decisions)
@@ -21,7 +21,7 @@
 
 # What
 
-My repo template for personal use
+My github repo template for personal use
 
 
 <a id="features"></a>
@@ -37,12 +37,14 @@ My repo template for personal use
 
 # Why
 
-So I can have consistency across my projects
+So I can have consistency across my projects and save time
 
 
 <a id="for-whom"></a>
 
 # For Whom
+
+Myself and anyone who wants to use it
 
 
 <a id="how"></a>
@@ -54,10 +56,22 @@ So I can have consistency across my projects
 
 ## Requirements
 
+-   If you just want the markdown template, you don't need anything besides copy/paste
+-   If you want to use the git configs, you need git
+-   If you want to generate readmes with org mode you need:
+    -   emacs
+    -   org-mode
+    -   ox-gfm
+    -   maybe some other stuff I'm not thinking of right now
+
 
 <a id="installation"></a>
 
 ## Installation
+
+To use as the repo template for a new project:
+
+todo: code examples of starting new repo with this as basis as well as adding to existing project
 
 
 <a id="use"></a>
@@ -65,9 +79,13 @@ So I can have consistency across my projects
 ## Use
 
 
-<a id="license"></a>
+<a id="details"></a>
 
-### License
+### Details
+
+-   Troubleshooting
+
+-   License
 
 
 <a id="development"></a>
@@ -84,6 +102,8 @@ So I can have consistency across my projects
 
 ### Important Decisions
 
+todo: justify git decisions
+
 
 <a id="to-do"></a>
 
@@ -98,3 +118,5 @@ So I can have consistency across my projects
 <a id="by-whom"></a>
 
 # By Whom
+
+todo: my personal info and support/donation stuff

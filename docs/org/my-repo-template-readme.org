@@ -8,7 +8,7 @@
 :PROPERTIES:
 :CUSTOM_ID: what
 :END:
-My repo template for personal use
+My github repo template for personal use
 ** Features
 :PROPERTIES:
 :CUSTOM_ID: features
@@ -20,11 +20,12 @@ My repo template for personal use
 :PROPERTIES:
 :CUSTOM_ID: why
 :END:
-So I can have consistency across my projects
+So I can have consistency across my projects and save time
 * For Whom
 :PROPERTIES:
 :CUSTOM_ID: for-whom
 :END:
+Myself and anyone who wants to use it
 * How
 :PROPERTIES:
 :CUSTOM_ID: how
@@ -33,15 +34,33 @@ So I can have consistency across my projects
 :PROPERTIES:
 :CUSTOM_ID: requirements
 :END:
+- If you just want the markdown template, you don't need anything besides copy/paste
+- If you want to use the git configs, you need git
+- If you want to generate readmes with org mode you need:
+  - emacs
+  - org-mode
+  - ox-gfm
+  - maybe some other stuff I'm not thinking of right now
 ** Installation
 :PROPERTIES:
 :CUSTOM_ID: installation
 :END:
+To use as the repo template for a new project:
+
+todo: code examples of starting new repo with this as basis as well as adding to existing project
 ** Use
 :PROPERTIES:
 :CUSTOM_ID: use
 :END:
-*** License
+*** Details
+:PROPERTIES:
+:CUSTOM_ID: details
+:END:
+**** Troubleshooting
+:PROPERTIES:
+:CUSTOM_ID: troubleshooting
+:END:
+**** License
 :PROPERTIES:
 :CUSTOM_ID: license
 :END:
@@ -57,6 +76,7 @@ So I can have consistency across my projects
 :PROPERTIES:
 :CUSTOM_ID: important-decisions
 :END:
+todo: justify git decisions 
 *** To do
 :PROPERTIES:
 :CUSTOM_ID: to-do
@@ -69,3 +89,4 @@ So I can have consistency across my projects
 :PROPERTIES:
 :CUSTOM_ID: by-whom
 :END:
+todo: my personal info and support/donation stuff

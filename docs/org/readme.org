@@ -36,7 +36,15 @@
 :PROPERTIES:
 :CUSTOM_ID: use
 :END:
-*** License
+*** Details
+:PROPERTIES:
+:CUSTOM_ID: details
+:END:
+**** Troubleshooting
+:PROPERTIES:
+:CUSTOM_ID: troubleshooting
+:END:
+**** License
 :PROPERTIES:
 :CUSTOM_ID: license
 :END:
